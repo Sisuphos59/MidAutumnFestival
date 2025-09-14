@@ -87,37 +87,44 @@
             background-color: #dbeafe; /* 悬停时高亮行 */
         }
 
+        @media (max-width: 640px) { /* sm breakpoint */
+            .responsive-table th, .responsive-table td {
+                padding: 0.5rem;
+                font-size: 0.875rem;
+            }
+        }
+
     </style>
 </head>
-<body class="min-h-screen flex items-center justify-center p-4">
+<body class="min-h-screen flex items-start sm:items-center justify-center p-4">
 
     <!-- 主游戏容器，增加响应式设计 -->
-    <div class="game-container w-full max-w-4xl mx-auto p-6 md:p-8 bg-white/80 backdrop-blur-xl rounded-3xl shadow-2xl border border-gray-200/50">
+    <div class="game-container w-full max-w-4xl mx-auto p-4 md:p-8 bg-white/80 backdrop-blur-xl rounded-3xl shadow-2xl border border-gray-200/50">
         
-        <header class="text-center mb-6">
+        <header class="text-center mb-4 md:mb-6">
             <!-- 游戏标题与副标题 -->
-            <h1 class="text-5xl md:text-6xl font-bold mb-3 title-font text-gradient">清风度佳节，明月照廉途</h1>
-            <h2 id="position-title" class="text-lg md:text-xl font-semibold text-blue-700 transition-opacity duration-500">清廉人生模拟器</h2>
+            <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-3 title-font text-gradient">清风度佳节，明月照廉途</h1>
+            <h2 id="position-title" class="text-base sm:text-lg md:text-xl font-semibold text-blue-700 transition-opacity duration-500">清廉人生模拟器</h2>
              <!-- 清廉指数 -->
-            <div class="mt-2 text-blue-800"><span class="font-semibold">清廉指数:</span> <span id="score" class="font-bold text-2xl text-green-500 transition-colors duration-500">100</span></div>
+            <div class="mt-2 text-blue-800"><span class="font-semibold">清廉指数:</span> <span id="score" class="font-bold text-xl sm:text-2xl text-green-500 transition-colors duration-500">100</span></div>
         </header>
         
         <main>
             <!-- 游戏显示区域 -->
-            <div id="game-display" class="relative w-full aspect-video bg-cover bg-center rounded-2xl shadow-lg border-2 border-white overflow-hidden transition-all duration-500">
+            <div id="game-display" class="relative w-full aspect-square sm:aspect-video bg-cover bg-center rounded-2xl shadow-lg border-2 border-white overflow-hidden transition-all duration-500">
                 <!-- 对话框 -->
-                <div id="dialogue-box" class="absolute bottom-4 left-4 right-4 md:left-1/2 md:-translate-x-1/2 md:w-3/4 bg-white/80 backdrop-blur-md p-4 rounded-xl shadow-md border border-gray-200/50 transition-opacity duration-300 opacity-0 pointer-events-none">
-                    <p id="dialogue-text" class="text-gray-800 text-base md:text-lg text-center font-medium"></p>
+                <div id="dialogue-box" class="absolute bottom-4 left-4 right-4 md:left-1/2 md:-translate-x-1/2 md:w-3/4 bg-white/80 backdrop-blur-md p-3 sm:p-4 rounded-xl shadow-md border border-gray-200/50 transition-opacity duration-300 opacity-0 pointer-events-none">
+                    <p id="dialogue-text" class="text-gray-800 text-sm sm:text-base text-center font-medium"></p>
                 </div>
             </div>
 
             <!-- 故事描述 -->
-            <div id="story-text" class="w-full mt-6 bg-blue-50/70 border border-blue-200/50 p-5 rounded-2xl shadow-inner min-h-[100px]">
-                <p class="text-blue-900 leading-relaxed text-base md:text-lg"></p>
+            <div id="story-text" class="w-full mt-6 bg-blue-50/70 border border-blue-200/50 p-4 rounded-2xl shadow-inner min-h-[80px] text-sm sm:text-base">
+                <p class="text-blue-900 leading-relaxed"></p>
             </div>
 
             <!-- 选项区域 -->
-            <div id="choices-container" class="w-full mt-6 grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
+            <div id="choices-container" class="w-full mt-6 grid grid-cols-1 md:grid-cols-2 gap-3 sm:gap-4 md:gap-6">
                 <!-- 选项按钮将由 JavaScript 注入 -->
             </div>
         </main>
@@ -360,7 +367,7 @@
                     story: `
                         <p class="text-xl font-bold text-center mb-6 text-blue-800">“知其然，更知其所以然”</p>
                         <div class="overflow-x-auto">
-                            <table class="w-full text-sm text-left text-gray-700">
+                            <table class="responsive-table w-full text-sm text-left text-gray-700">
                                 <thead class="text-xs text-white uppercase">
                                     <tr>
                                         <th class="whitespace-nowrap">行为描述</th>
@@ -508,7 +515,7 @@
                     const isRestartButton = choice.text === '返回重选' || choice.text === '重新开始';
                     const buttonColorClass = isRestartButton ? 'restart-button' : 'bg-gradient-to-r from-blue-500 to-blue-600';
                     
-                    button.className = `choice-button w-full p-4 ${textAlignClass} rounded-xl shadow-md text-white font-semibold text-base md:text-lg ${buttonColorClass}`;
+                    button.className = `choice-button w-full p-3 sm:p-4 ${textAlignClass} rounded-xl shadow-md text-white font-semibold text-sm sm:text-base ${buttonColorClass}`;
                     
                     if (isSingleChoice) {
                         choicesContainer.classList.remove('md:grid-cols-2');
@@ -549,3 +556,5 @@
     </script>
 </body>
 </html>
+
+
